@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block theme_class %}screen3-theme{% endblock %}
+
+{% block content %}
+
+<h2>Confirm Enrollment Deletion</h2>
+
+{% if record %}
+
+<div class="screen3-grid">
+
+    <!-- LEFT COLUMN -->
+     <div class="left-column">
+ 
+     
+
+
+        <!-- Student Info Card -->
+        <div class="screen3-card">
+        <h3>Student Information</h3>
+
+        <div class="detail-row">
+            <span class="detail-label">Name:</span>
+            <span class="detail-value">{{ record.FirstName }} {{ record.LastName }} ({{ record.ProgramTo }})</span>
+        </div>
+
+        <div class="detail-row">
+            <span class="detail-label">Student No:</span>
+            <span class="detail-value">{{ record.StudentNo }}</span>
+        </div>
+
+        <div class="detail-row">
+            <span class="detail-label">C365 ID:</span>
+            <span class="detail-value">{{ record.C365Id }}</span>
+        </div>
+
+        
+        </div>
+
+        <div class="scroll-hint">▼</div>
+      
+        <!-- Change Details Card -->
+        <div class="screen3-card">
+            <h3>Change Details</h3>
+            <div class="detail-row">
+                <span class="detail-label">From:</span>
+                <span class="detail-value">{{ record.ChangeFrom }}</span>
+            </div>
+          
+            <div class="detail-row">
+                <span class="detail-label">To:</span>
+                <span class="detail-value">{{ record.ChangeTo }}</span>
+            </div>            
+            <div class="detail-row">
+                <span class="detail-label">Requested By:</span>
+                <span class="detail-value">{{ record.RequestedBy }}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Date Requested:</span>
+                <span class="detail-value">{{ record.Date }}</span>
+            </div>
+
+
+            {% if record.ChangeNotes %}
+                <hr>
+                <div class="detail-row">
+                <span class="detail-label">Change Notes:</span>
+                <span class="detail-value">{{ record.ChangeNotes }}</span>
+            </div>
+            {% endif %}
+
+            {% if record.EnrollCode == 1 %}
+               
+                <div class="detail-row">
+                    <span class="detail-label">
+                        Enroll Status:
+                    </span>
+                    <span class="detail-value">
+                        {{ enroll_msg }} by {{ record.ByUser }} on {{ record.AddMade }}
+                    </span>
+                </div>
+
+            {% else %} 
+                 <hr>
+                <div class="detail-row">
+                    <span class="detail-label">
+                        Enroll Status:
+                    </span>
+                    <span class="detail-value">
+                        {{ enroll_msg }} 
+                    </span>
+                </div>
+            {% endif %}
+
+                <div class="detail-row">
+                    <span class="detail-label">
+                        Archive Status:
+                    </span>
+                    <span class="detail-value">
+                        {{ archive_msg }}
+                    </span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">
+                        Workshop Status:
+                    </span>
+                    <span class="detail-value">
+                        {{ workshop_msg }}
+                    </span>
+                </div>
+          
+        </div>
+
+         <!-- Admin Notes Card -->
+        <div class="screen3-card">
+            <h3>Student Manager Notes</h3>
+            <div class="screen3-notes">{{ record.AdminNotes | safe }}</div>
+        </div>
+
+
+    </div>
+   
+
+    <!-- RIGHT COLUMN -->
+    <div>
+
+
+        <!-- Required Actions Card -->
+        <div class="screen3-card">
+            <h3>Admin Actions</h3>
+            <div class="detail-row">
+                <span class="detail-label">Old Enrollment:</span>
+                <span class="detail-value">{{ record.CohortToDelete }}</span>
+            </div>
+            {% if record.DeleteCode == 1 %}
+               
+                <div class="detail-row">
+                    <span class="detail-label">
+                        Delete Status:
+                    </span>
+                    <span class="detail-value">
+                        {{ delete_msg }} on {{ record.DeleteDone }}. No admin action required.
+                    </span>
+                </div>
+
+            {% elif record.DeleteDone %}        
+
+               <div class="detail-row">
+                    <span class="detail-label">
+                        Delete Status:
+                    </span>
+                    <span class="detail-value">
+                        Enrollment was deleted on {{ record.DeleteDone }} by {{ record.Admin }}. No admin action required.
+                    </span>
+                </div>
+
+            {% else %} 
+            
+            <div class="detail-row">
+                <span class="detail-label">Delete Status:</span>
+                <span class="detail-value">{{ delete_msg }}</span>
+            </div>
+            {% endif %}
+
+
+            {% if record.QtrToClose %}
+                <hr>
+
+                <div class="detail-row">
+                <span class="detail-label">Quarter:</span>
+                <span class="detail-value"><strong>{{ record.QtrToClose }}</strong> must be closed before deleting the old enrollment</span>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+
+{% block footer %}
+<div class="footer-bar">
+    <a href="/admin/delete?logid={{ record.LogId }}">
+        <button class="oba-button" style="background-color:#b00000;">Confirm Deletion</button>
+    </a>
+
+    <a href="/admin/screen2?mode=needs_action">
+        <button class="oba-button">Cancel</button>
+    </a>
+</div>
+{% endblock %}
+
+{% else %}
+<p>No record found.</p>
+{% endif %}
+
+{% endblock %}
+
+

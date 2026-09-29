@@ -1,0 +1,28 @@
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# Local development artifacts
+local_dev/
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Railway / deployment artifacts
+*.sqlite3

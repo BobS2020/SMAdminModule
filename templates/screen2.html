@@ -1,0 +1,8 @@
+<h2>Results</h2>
+
+{% for r in results %}
+    <div>
+        {{ r.student_name }} — {{ r.course }}
+        <a href="/admin/screen3?logid={{ r.logid }}">Select</a>
+    </div>
+{% endfor %}

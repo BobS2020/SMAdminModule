@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Manager Admin Module</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+
+    {% block head %}{% endblock %}
+</head>
+<body class="{% block theme_class %}{% endblock %}">
+
+
+
+    <!-- FIXED HEADER STACK -->
+    <div class="oba-header">
+        {% include "partials/header.html" %}
+    </div>
+
+    <div class="sub-header">
+        {% include "partials/sub_header.html" %}
+    </div>
+
+
+    <!-- SCROLLABLE CONTENT AREA -->
+    <div class="screen-content-scroll">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- SINGLE FIXED FOOTER -->
+    <div class="footer-bar">
+        {% block footer %}
+        <!-- Screens insert ONLY their buttons here -->
+        {% endblock %}
+    </div>
+
+    {% block scripts %}{% endblock %}
+
+
+</body>
+</html>

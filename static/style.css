@@ -1,0 +1,522 @@
+/*********************************
+  GLOBAL RESET / BASE STYLES
+**********************************/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+:root {
+    --card-bg: #fafbff;
+    --screen2-bgcolor: #f0ebd8;
+    --screen3-bgcolor: #d1b88e;
+
+    /* Header + footer heights (measured from your actual CSS) */
+    --header-height: 203px;   
+    --footer-height: 41px;    /* comfortable button area */
+}
+
+
+.detail-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;   /* label | value */
+    column-gap: 12px;
+    margin: 4px 0;
+}
+
+.detail-label {
+    font-weight: 700;
+    color: #333;
+}
+
+.detail-value {
+    color: #000;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;   /* ← this creates 20px between cards */
+}
+
+
+/*********************************
+  Header Footer Styles
+**********************************/
+
+.oba-header {
+    background-color: #245c02;
+    color: white;
+    padding: 12px 24px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    z-index: 1000;
+}
+
+.oba-header-title {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.header-block {
+    margin: 0;
+    padding: 0;
+    width: 100%;     /* NEW */
+    display: block;  /* NEW */
+}
+
+
+
+
+
+/* --- Sub Header (yellow) --- */
+.sub-header {
+    display: flex;
+    align-items: center;
+    background-color: #fff8d2;
+    padding: 12px 24px 4px 24px;
+    text-align: center;
+    margin: 0;
+    position: fixed;
+    top: 64px;        /* directly below .oba-header */
+    left: 0;
+    width: 100%;
+    height: 94px;     /* measured height */
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.sub-header h2 {
+    margin: 0;
+}
+
+.sub-header p {
+    margin: 4px 0 0;
+}
+
+
+.sub-header-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.sub-header-subtitle {
+    font-size: 22px;     /* or 26px if you want it closer to the title */
+    font-weight: 500;    /* bold */
+    margin: 4px 0 0;
+    text-align: center;  /* redundant but safe */
+}
+
+
+
+.status-bar {
+    background-color: #edf3f7;
+    padding: 15px 24px 6px 24px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 158px; /* 64 + 94 */
+    left: 0;
+    width: 100%;
+    height: 45px;
+    z-index: 998;
+}
+
+.oba-button {
+    background-color: #003366;     /* same blue as header */
+    color: white;
+    font-family: "Segoe UI", sans-serif;
+    font-weight: 600;              /* bold but not screaming */
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    transition: background-color 0.2s ease;
+}
+
+.oba-button:hover {
+    background-color: #0055aa;     /* lighter blue on hover */
+}
+
+.footer-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 40px;
+    background-color: var(--bgcolor, #f5f7fa);
+    border-top: 1px solid #d0d7e2;
+    height: 65px;             /* FIXED */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;      /* vertically center the button */
+    gap: 12px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+
+
+.screen-content-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    margin-top: calc(var(--header-height) - var(--extra-top, 0px));
+    padding: 20px 40px;
+}
+
+
+
+/*********************************
+  Screen 0 Styles
+**********************************/
+
+.screen0-theme {
+    --bgcolor: #d1dee7;
+    background-color: var(--bgcolor);
+    padding-left: 40px;
+    padding-right: 40px;
+    --extra-top: 100px
+}
+
+.screen0-container {
+    background-color: var(--bgcolor);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 40px !important;
+}
+
+.screen0-body {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+
+
+.screen0-lead {
+    font-size: 1.60rem;        /* slightly larger than normal */
+    color: #000000;              
+    text-align: center;
+    max-width: 480px;          /* keeps it from stretching too wide */
+    margin: 20px auto 30px;    /* centers and adds breathing room */
+    line-height: 1.4;
+}
+
+.screen0-left-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oba-logo {
+    width: 180px;
+    height: auto;
+}
+
+.screen0-right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.version-info {
+    font-size: 12pt;
+    color: #444;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+
+/*********************************
+  Screen 1 Styles
+**********************************/
+
+.screen1-body {
+    display: flex;
+    gap: 32px;
+    margin-top: 20px;
+}
+
+.screen1-container {
+    background-color: #d7deea;
+    padding: 30px 40px;   /* fixes the scrunched-left problem */
+}
+
+.screen1-theme {
+    --bgcolor: #d7deea;
+    background-color: var(--bgcolor);
+    padding-left: 40px;
+    padding-right: 40px;
+    --extra-top: 120px
+}
+
+.screen1-left-column {
+    width: 40%;
+}
+
+.screen1-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+
+.card {
+    padding: 24px 28px;
+    border-radius: 10px;
+    background: var(--card-bg);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+
+
+/* ADD scroll to the card container */
+.student-list-card {
+    display: flex;
+    flex-direction: column;
+    height: 420px;
+    overflow: hidden;
+
+}
+
+.student-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* Make search box match the width of the student list card */
+#searchBox {
+    display: block;
+    width: calc(100% - 60px);   /* matches card padding: 30px left + 30px right */
+    margin: 0 auto 16px auto;   /* centers it and adds spacing below */
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.student-item.selected {
+    background-color: #dfe8ff;
+    font-weight: 600;
+}
+
+
+.selected-student-card {
+    margin-top: 52px;   /* aligns with list card */
+}
+
+.selected-student-card h3 {
+    margin-bottom: 8px;      /* tighter spacing under name */
+}
+
+.selected-student-card p {
+    margin: 4px 0;           /* much tighter vertical spacing */
+    line-height: 1.25;
+}
+
+.student-item {
+    padding: 3px 6px;
+    border-bottom: 1px solid #e5e5e5;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.student-item:hover {
+    background: #f2f5ff;
+}
+
+
+/*********************************
+  Screen 2 Styles
+**********************************/
+
+.screen2-container {
+    background-color: var(--screen2-bgcolor);
+    padding: 30px 40px;
+}
+
+.screen2-theme {
+    background-color: var(--screen2-bgcolor);
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.footer-bar {
+    background-color: var(--bgcolor);
+    border-top: none;
+    box-shadow: none;
+}
+
+
+.screen2-card {
+    background-color: var(--screen2-bgcolor);   /* match Screen2 background */
+    box-shadow: none;            /* remove the white halo */
+    border: none;                /* optional: remove any faint border */
+}
+
+.screen2-grid {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: 180px 240px 240px;  /* two equal columns */
+    column-gap: 40px;
+    row-gap: 20px;
+    align-items: start;
+    background-color: var(--screen2-bgcolor);
+}
+
+.header-cell {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.screen2-readonly {
+    width: 240px;
+    padding: 8px 10px;
+    border: 2px solid #1a73e8;
+    border-radius: 6px;
+    background-color: #f5f7fa;
+    font-size: 16px;
+}
+
+.screen2-select {
+    width: 240px;
+    padding: 8px 10px;
+    border: 2px solid #1a73e8;
+    border-radius: 6px;
+    background-color: #ffffff;
+    font-size: 16px;
+    outline: none;
+}
+
+
+.screen2-select:focus {
+    border-color: #1557b0;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.25);
+}
+
+.notes-box {
+    grid-column: 2 / span 2;
+}
+
+.screen2-card {
+    padding:  padding: 10px 20px;   /* remove the white border effect   was 0*/
+    background-color: var(--screen2-bgcolor);
+    box-shadow: none;
+    border: none;
+}
+
+
+.screen2-notes {
+    grid-column: 2 / span 2;   /* start at column 2, span columns 2 and 3 */
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #1a73e8;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.screen2-label {
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.screen2-grid .screen2-label-col {
+    font-size: 25px;
+    font-weight: bold !important;
+    display: block;
+}
+
+.screen3-theme {
+    --bgcolor: var(--screen3-bgcolor);
+    background-color: var(--bgcolor);
+    padding-left: 40px;
+    padding-right: 40px;
+    --extra-top: 120px;   /* same spacing as Screen1 */
+}
+.screen3-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.screen3-card {
+    background: var(--card-bg);
+    padding: 24px 28px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.screen3-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.screen3-line {
+    margin-bottom: 8px;
+}
+
+.screen3-warn {
+    color: #b00000;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.screen3-notes {
+    white-space: pre-wrap;
+    background: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.scroll-hint {
+    font-size: 22px;
+    color: white;
+    opacity: 0.8;
+    margin: 0 auto;        /* centers the arrow */
+    margin-top: -10px;      /* pulls it closer to the card above */
+    margin-bottom: -4px;    /* spacing before the next card */
+    width: fit-content;
+    transition: opacity 0.3s ease;
+}
+
