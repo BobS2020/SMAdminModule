@@ -231,7 +231,7 @@ def update_user_deletion_mysql(log_id, username):
         sql1 = """
             UPDATE StudentChangeLog
             SET DeleteDone = NOW(),
-                Admin = %s,                
+                Admin = %s                
             WHERE LogId = %s;
         """
         
