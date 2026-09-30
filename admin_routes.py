@@ -62,14 +62,17 @@ async def screen2(request: Request, mode: str = None, name: str = None, qtr: str
 @router.get("/admin/screen3")
 async def screen3(request: Request, logid: int):
 
-    # ⭐ Save the original URL BEFORE ensure_token()
+    # Save original URL BEFORE ensure_token()
     original_url = str(request.url)
-    response = RedirectResponse(url="/auth/start")
-    response.set_cookie("post_auth_redirect", original_url)
 
+    # Ask ensure_token if user is authenticated
     result = await ensure_token(request)
+
     if result:
-        return result
+        # User is NOT authenticated → redirect to MSAL
+        response = RedirectResponse(url="/auth/start")
+        response.set_cookie("post_auth_redirect", original_url)
+        return response
 
     record = get_changelog_by_id(logid)
     username = request.cookies.get("user_name")
