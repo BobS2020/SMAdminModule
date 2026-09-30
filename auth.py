@@ -69,7 +69,9 @@ async def auth_callback(request: Request, code: str | None = None):
     user_email = claims.get("preferred_username", "unknown_user")
     user_name = claims.get("name", user_email)   # fallback to email if name missing
 
-    response = RedirectResponse(url="/admin/screen0")
+    redirect_target = request.cookies.get("post_auth_redirect", "/admin/screen1")
+    response = RedirectResponse(url=redirect_target)
+
     response.set_cookie("access_token", access_token, httponly=True)
     response.set_cookie("user_id", user_email, httponly=True)
     response.set_cookie("user_name", user_name, httponly=True)

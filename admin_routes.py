@@ -61,6 +61,12 @@ async def screen2(request: Request, mode: str = None, name: str = None, qtr: str
 # Screen3 – Review + Confirm Deletion
 @router.get("/admin/screen3")
 async def screen3(request: Request, logid: int):
+
+    # ⭐ Save the original URL BEFORE ensure_token()
+    original_url = str(request.url)
+    response = RedirectResponse(url="/auth/start")
+    response.set_cookie("post_auth_redirect", original_url)
+
     result = await ensure_token(request)
     if result:
         return result
@@ -111,6 +117,7 @@ from fastapi import Form
 
 @router.get("/admin/delete")
 async def screen3(request: Request, logid: int):
+    
     # Ensure user is authenticated
     result = await ensure_token(request)
     if result:
