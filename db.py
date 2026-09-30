@@ -232,7 +232,7 @@ def update_user_deletion_mysql(log_id, username):
             UPDATE StudentChangeLog
             SET DeleteDone = NOW(),
                 Admin = %s,                
-            WHERE LogId = %s
+            WHERE LogId = %s;
         """
         
         cursor.execute(sql1, (username, log_id))
